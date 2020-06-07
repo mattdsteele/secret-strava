@@ -9,4 +9,6 @@ group :development, :test do
   gem "rspec"
 end
 
+gem "dotenv"
+gem "mechanize"
 gem "strava-ruby-client"
