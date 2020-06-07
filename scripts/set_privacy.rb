@@ -3,6 +3,6 @@ require 'dotenv/load'
 
 user = ENV['STRAVA_USER']
 password = ENV['STRAVA_PASSWORD']
-client = PrivacyClient.new({user: user, password: password})
+client = SecretStrava::PrivacyClient.new({user: user, password: password})
 client.auth
-client.make_public 3574257256
+client.make_followers_only 3574257256
