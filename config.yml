@@ -1,0 +1,3 @@
+auth:
+  host: strava.steele.blue
+  oauth-path: /auth-response
