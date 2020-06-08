@@ -8,12 +8,15 @@ athlete = {
   athleteId: 1234, accessToken: 'bbb', refreshToken: 'lqwerty', expiresAt: now
 }
 
-=begin
 a = r.create athlete
 puts a.inspect
-=end
 
 a = r.get(1234)
-d = a.data.user_by_id.expires_at
-puts a.inspect
-puts DateTime.iso8601(d)
+if a.errors.any?
+  puts 'got to errors'
+  m = a.errors.details[:data].first
+  puts m.inspect
+else
+  d = a.data.user_by_id.expires_at
+  puts DateTime.iso8601(d)
+end
