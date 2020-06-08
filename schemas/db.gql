@@ -1,0 +1,10 @@
+type User {
+  athleteId: Integer!
+  accessToken: String
+  refreshToken: String
+  expiresAt: Date
+}
+
+type Query {
+  userById(id: Integer!): User!
+}
