@@ -1,10 +1,10 @@
 type User {
-  athleteId: Integer!
+  athleteId: Int!
   accessToken: String
   refreshToken: String
-  expiresAt: Date
+  expiresAt: Time
 }
 
 type Query {
-  userById(id: Integer!): User!
+  userById(athleteId: Int!): User!
 }

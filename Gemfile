@@ -12,3 +12,4 @@ end
 gem "dotenv"
 gem "mechanize"
 gem "strava-ruby-client"
+gem "graphql-client"

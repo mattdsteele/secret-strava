@@ -17,6 +17,10 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday_middleware (1.0.0)
       faraday (~> 1.0)
+    graphql (1.10.10)
+    graphql-client (0.16.0)
+      activesupport (>= 3.0)
+      graphql (~> 1.8)
     hashie (4.1.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -76,6 +80,7 @@ PLATFORMS
 
 DEPENDENCIES
   dotenv
+  graphql-client
   mechanize
   rake
   rspec
