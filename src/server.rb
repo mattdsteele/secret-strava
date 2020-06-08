@@ -6,13 +6,12 @@ require_relative './strava_client'
 c = SecretStrava::StravaClient.new
 get '/' do
   u = c.auth_url(host: 'http://localhost:4567')
-  "<a href=\"#{u}\">Auth</a>"
-  liquid :index
+  liquid :index, locals: { foo: u }
 end
 
 get '/auth-response' do
   auth_token = c.auth_token(params[:code])
-  "i made it! #{params} with token: #{auth_token}"
+  liquid :authed, locals: { token: auth_token }
 end
 
 get '/events' do
