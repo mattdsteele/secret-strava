@@ -11,7 +11,12 @@ end
 
 get '/auth-response' do
   auth_token = c.auth_token(params[:code])
-  liquid :authed, locals: { token: auth_token }
+  puts auth_token
+  redirect '/auth-success'
+end
+
+get '/auth-success' do
+  liquid :authed
 end
 
 get '/events' do
