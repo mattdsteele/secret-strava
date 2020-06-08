@@ -1,4 +1,4 @@
-require "mechanize"
+require 'mechanize'
 require_relative './logger'
 
 module SecretStrava
