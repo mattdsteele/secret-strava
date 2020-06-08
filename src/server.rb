@@ -2,16 +2,31 @@ require 'dotenv/load'
 require 'sinatra'
 require 'liquid'
 require_relative './strava_client'
+require_relative './user_repo'
+require 'date'
 
-c = SecretStrava::StravaClient.new
+client = SecretStrava::StravaClient.new
+user = SecretStrava::UserRepo.new
 get '/' do
-  u = c.auth_url(host: 'http://localhost:4567')
+  u = client.auth_url(host: 'http://localhost:4567')
   liquid :index, locals: { foo: u }
 end
 
 get '/auth-response' do
-  auth_token = c.auth_token(params[:code])
-  puts auth_token
+  event = client.auth_token(params[:code])
+  puts event
+  puts event.expires_at.class
+  expires_at =
+    event.expires_at.to_datetime.new_offset(0).iso8601.sub! '+00:00', 'Z'
+  athlete = {
+    athleteId: event.athlete.id,
+    accessToken: event.access_token,
+    refreshToken: event.refresh_token,
+    expiresAt: expires_at
+  }
+  res = user.create athlete
+  puts 'created athlete in repo'
+  pp res
   redirect '/auth-success'
 end
 
