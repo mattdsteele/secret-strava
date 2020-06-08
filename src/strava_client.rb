@@ -21,11 +21,15 @@ module SecretStrava
     end
     def auth_url(options = {})
       host_uri = options[:host] || @@host
-      uri = "#{host_uri}/#{@@oauth_path}"
+      uri = "#{host_uri}#{@@oauth_path}"
       log.debug "generating auth against #{uri}"
       @client.authorize_url(
         redirect_uri: uri, scope: 'activity:read_all,activity:write'
       )
+    end
+    def auth_token(code)
+      log.debug("getting auth token: #{code}")
+      @client.oauth_token(code: code)
     end
   end
 end

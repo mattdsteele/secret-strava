@@ -26,6 +26,7 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
+    liquid (4.0.3)
     mechanize (2.7.6)
       domain_name (~> 0.5, >= 0.5.1)
       http-cookie (~> 1.0)
@@ -41,12 +42,17 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.1)
     multipart-post (2.1.1)
+    mustermann (1.1.1)
+      ruby2_keywords (~> 0.0.1)
     net-http-digest_auth (1.4.1)
     net-http-persistent (4.0.0)
       connection_pool (~> 2.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     ntlm-http (0.1.1)
+    rack (2.2.2)
+    rack-protection (2.0.8.1)
+      rack
     rake (13.0.1)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
@@ -61,12 +67,19 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.3)
+    ruby2_keywords (0.0.2)
+    sinatra (2.0.8.1)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.8.1)
+      tilt (~> 2.0)
     strava-ruby-client (0.4.0)
       activesupport
       faraday (>= 1.0.0)
       faraday_middleware
       hashie
     thread_safe (0.3.6)
+    tilt (2.0.10)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unf (0.1.4)
@@ -81,9 +94,11 @@ PLATFORMS
 DEPENDENCIES
   dotenv
   graphql-client
+  liquid
   mechanize
   rake
   rspec
+  sinatra
   strava-ruby-client
 
 BUNDLED WITH
