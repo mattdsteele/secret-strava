@@ -31,5 +31,10 @@ module SecretStrava
       log.debug("getting auth token: #{code}")
       @client.oauth_token(code: code)
     end
+    def refresh(refresh_token)
+      @client.oauth_token(
+        refresh_token: refresh_token, grant_type: 'refresh_token'
+      )
+    end
   end
 end
