@@ -36,5 +36,9 @@ module SecretStrava
         refresh_token: refresh_token, grant_type: 'refresh_token'
       )
     end
+    def client_for(access_token)
+      client = Strava::Api::Client.new(access_token: access_token)
+      client
+    end
   end
 end
