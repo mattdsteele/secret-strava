@@ -9,10 +9,10 @@ module SecretStrava
       @configs = [YamlConfig.new, EnvConfig.new, GoogleSecretsConfig.new]
     end
     def method_missing(m)
-      logger.debug "getting config for #{m.to_s}"
+      log.debug "getting config for #{m.to_s}"
       @configs.each do |c|
         res = c.send m
-        logger.debug "found value: #{res}" if res != nil
+        log.debug "found value: #{res}" if res != nil
         return res if res != nil
       end
       nil

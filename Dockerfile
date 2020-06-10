@@ -10,4 +10,6 @@ EXPOSE 4567
 COPY . .
 RUN bundle install
 
+ENV APP_ENV=production
+
 CMD ruby ./src/server.rb

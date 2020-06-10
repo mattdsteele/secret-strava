@@ -31,7 +31,7 @@ module SecretStrava
         @client.secret_version_path project: @name,
                                     secret: secret_name,
                                     secret_version: 'latest'
-      logger.debug "testing #{secret_name} to #{secret_key}"
+      log.debug "testing #{secret_name} to #{secret_key}"
       begin
         res = @client.access_secret_version name: secret_key
       rescue Google::Cloud::NotFoundError
