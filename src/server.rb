@@ -7,6 +7,7 @@ require 'date'
 
 client = SecretStrava::StravaClient.new
 user = SecretStrava::UserRepo.new
+
 get '/' do
   u = client.auth_url(host: 'http://localhost:4567')
   liquid :index, locals: { foo: u }
@@ -47,6 +48,11 @@ post '/events' do
   body = request.body.read
   event = Strava::Webhooks::Models::Event.new(JSON.parse(body))
   pp event
+  user_data = user.get_or_refresh event.owner_id
+  user_client = client.client_for user_data.access_token
+  latest_activity = user_client.activity event.object_id
+  puts "#{latest_activity.name}: #{latest_activity.type_emoji}"
+  pp latest_activity
   content_type :json
   { ok: true }.to_json
 end

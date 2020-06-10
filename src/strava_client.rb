@@ -8,10 +8,9 @@ module SecretStrava
 
     def initialize
       log.debug 'initializing client'
-      c = SecretStrava::Config.parse
-      auth = c['auth']
-      @@host = "https://#{auth['host']}"
-      @@oauth_path = auth['oauth-path']
+      c = SecretStrava::Config.new
+      @@host = "https://#{c.auth_host}"
+      @@oauth_path = c.auth_oauthpath
 
       @client =
         Strava::OAuth::Client.new(
