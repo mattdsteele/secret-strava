@@ -1,4 +1,5 @@
 require 'logger'
+require_relative './logger'
 
 module MyLogger
   LOGGER = Logger.new $stderr, level: Logger::WARN
@@ -16,6 +17,7 @@ require 'google/cloud/secret_manager'
 
 module SecretStrava
   class GoogleSecretsConfig
+    include SecretStrava::Log
     def initialize
       @client = Google::Cloud::SecretManager.secret_manager_service
       @name = 'secret-strava'
@@ -29,6 +31,7 @@ module SecretStrava
         @client.secret_version_path project: @name,
                                     secret: secret_name,
                                     secret_version: 'latest'
+      logger.debug "testing #{secret_name} to #{secret_key}"
       begin
         res = @client.access_secret_version name: secret_key
       rescue Google::Cloud::NotFoundError
