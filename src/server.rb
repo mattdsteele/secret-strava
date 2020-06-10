@@ -9,7 +9,7 @@ client = SecretStrava::StravaClient.new
 user = SecretStrava::UserRepo.new
 
 get '/' do
-  u = client.auth_url(host: 'http://localhost:4567')
+  u = client.auth_url
   liquid :index, locals: { foo: u }
 end
 
