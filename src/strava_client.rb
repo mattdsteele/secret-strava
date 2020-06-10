@@ -14,8 +14,8 @@ module SecretStrava
 
       @client =
         Strava::OAuth::Client.new(
-          client_id: ENV['STRAVA_CLIENT_ID'],
-          client_secret: ENV['STRAVA_CLIENT_SECRET']
+          client_id: c.strava_client_id
+          client_secret: c.strava_client_secret
         )
     end
     def auth_url(options = {})
