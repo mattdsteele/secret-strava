@@ -6,12 +6,11 @@ require_relative './strava_client'
 require_relative './config'
 
 module SecretStrava # Configure GraphQL endpoint using the basic HTTP network adapter.
-  c = SecretStrava::Config.new
   HTTP =
     GraphQL::Client::HTTP.new('https://graphql.fauna.com/graphql') do
       def headers(context)
-        # Optionally set any HTTP headers
-        { "Authorization": "Bearer #{c.fauna_key}" }
+        config = SecretStrava::Config.new # Optionally set any HTTP headers
+        { "Authorization": "Bearer #{config.fauna_key}" }
       end
     end
 
