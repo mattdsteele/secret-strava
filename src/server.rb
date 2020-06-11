@@ -69,6 +69,7 @@ post '/events' do
       privacy.make_private activity.id if res == 'private'
       privacy.make_followers_only activity.id if res == 'followers-only'
       privacy.make_public activity.id if res == 'everyone'
+      puts 'done'
     else
       puts "visibility for activity #{activity.id} already good at #{res}"
     end
