@@ -18,14 +18,12 @@ require 'google/cloud/secret_manager'
 module SecretStrava
   class GoogleSecretsConfig
     include SecretStrava::Log
-    def initialize
-      @client = Google::Cloud::SecretManager.secret_manager_service
+    def init
+      @client ||= Google::Cloud::SecretManager.secret_manager_service
       @name = 'secret-strava'
     end
-    def c
-      @client
-    end
     def method_missing(m)
+      self.init
       secret_name = m.to_s.upcase
       secret_key =
         @client.secret_version_path project: @name,

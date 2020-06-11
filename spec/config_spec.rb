@@ -1,6 +1,7 @@
+require_relative './spec_helper'
 require_relative '../src/config'
 
-describe 'config' do
+describe 'config', :vcr do
   it 'loads config from yml' do
     c = SecretStrava::Config.new
     expect(c.auth_host).to eq 'strava.steele.blue'

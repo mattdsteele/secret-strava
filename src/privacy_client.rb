@@ -5,9 +5,9 @@ module SecretStrava
   class PrivacyClient
     include SecretStrava::Log
 
-    def initialize(options)
-      @user = options[:user]
-      @pass = options[:password]
+    def initialize(config = SecretStrava::EnvConfig.new)
+      @user = config.user
+      @pass = config.password
     end
     def auth
       log.debug 'Logging in'
