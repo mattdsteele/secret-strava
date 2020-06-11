@@ -23,7 +23,7 @@ module SecretStrava
   end
   class LongRideIdentifier
     def classify(activity)
-      'public' if activity.distance_in_miles > 30
+      'everyone' if activity.distance_in_miles > 30
     end
   end
   class ShortRideIdentifier

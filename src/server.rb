@@ -3,10 +3,14 @@ require 'sinatra'
 require 'liquid'
 require_relative './strava_client'
 require_relative './user_repo'
+require_relative './ride_classifier'
+require_relative './privacy_client'
 require 'date'
 
 client = SecretStrava::StravaClient.new
 user = SecretStrava::UserRepo.new
+classifier = SecretStrava::RideClassifier.new
+privacy = SecretStrava::PrivacyClient.new
 
 get '/' do
   u = client.auth_url
@@ -50,9 +54,23 @@ post '/events' do
   pp event
   user_data = user.get_or_refresh event.owner_id
   user_client = client.client_for user_data.access_token
-  latest_activity = user_client.activity event.object_id
+  activity = user_client.activity event.object_id
+
   puts "#{latest_activity.name}: #{latest_activity.type_emoji}"
-  pp latest_activity
+
+  if activity.type == 'Ride'
+    res = classifier.classify activity
+
+    if res != activity.visibility
+      puts "updating visibility of event: #{activity} from #{
+             activity.visibility
+           } to #{res}"
+      privacy.auth
+      privacy.make_private activity.id if res == 'private'
+      privacy.make_followers_only activity.id if res == 'followers-only'
+      privacy.make_public activity.id if res == 'everyone'
+    end
+  end
   content_type :json
   { ok: true }.to_json
 end

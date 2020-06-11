@@ -9,8 +9,8 @@ end
 describe 'ride classifier' do
   it 'does not identify as big ride as private' do
     c = SecretStrava::RideClassifier.new
-    r = c.classify(act('bigride'))
-    expect(r).to eq 'followers-only'
+    r = c.classify(act('big-ride'))
+    expect(r).to eq 'everyone'
   end
   it 'identifies commutes as private' do
     c = SecretStrava::RideClassifier.new
@@ -26,5 +26,10 @@ describe 'ride classifier' do
     c = SecretStrava::RideClassifier.new
     r = c.classify(act('indoor-short'))
     expect(r).to eq 'private'
+  end
+  it 'defaults to followers-only' do
+    c = SecretStrava::RideClassifier.new
+    r = c.classify(act('medium-ride'))
+    expect(r).to eq 'followers-only'
   end
 end
