@@ -56,7 +56,7 @@ post '/events' do
   user_client = client.client_for user_data.access_token
   activity = user_client.activity event.object_id
 
-  puts "#{latest_activity.name}: #{latest_activity.type_emoji}"
+  puts "#{activity.name}: #{activity.type_emoji}"
 
   if activity.type == 'Ride'
     res = classifier.classify activity
