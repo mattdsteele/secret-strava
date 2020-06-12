@@ -19,6 +19,8 @@ module SecretStrava
       page2 = agent.submit(f)
       @agent = agent
       log.debug 'Logged in'
+      log.debug page2.inspect
+      log.debug 'This was the page'
     end
 
     def make_private(activity_id)
@@ -38,7 +40,7 @@ module SecretStrava
       url = "https://www.strava.com/activities/#{activity_id}/edit"
       page = @agent.get(url)
       puts 'got a page'
-      puts page
+      puts page.inspect
       f = page.forms[1]
       puts 'got a form'
       puts f
