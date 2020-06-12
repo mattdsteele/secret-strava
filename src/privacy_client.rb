@@ -1,16 +1,17 @@
 require 'mechanize'
 require_relative './logger'
+require_relative './config'
 
 module SecretStrava
   class PrivacyClient
     include SecretStrava::Log
 
-    def initialize(config = SecretStrava::EnvConfig.new)
+    def initialize(config = SecretStrava::Config.new)
       @user = config.strava_user
       @pass = config.strava_password
     end
     def auth
-      log.debug "logging in with #{@user}/#{pass}"
+      log.debug "logging in with #{@user}/#{@pass}"
       agent = Mechanize.new
       page = agent.get('https://strava.com/login')
       f = page.forms.first
