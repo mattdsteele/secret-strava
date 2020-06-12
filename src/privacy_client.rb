@@ -10,7 +10,7 @@ module SecretStrava
       @pass = config.strava_password
     end
     def auth
-      log.debug 'Logging in'
+      log.debug "logging in with #{@user}/#{pass}"
       agent = Mechanize.new
       page = agent.get('https://strava.com/login')
       f = page.forms.first
