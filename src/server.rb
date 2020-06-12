@@ -68,10 +68,10 @@ post '/events' do
       privacy.auth
       mappings = {
         'private': :make_private,
-        'followers-only': :make_followers_only,
+        'followers_only': :make_followers_only,
         'everyone': :make_public
       }
-      privacy.send mappings[res], activity.id
+      privacy.send mappings[res.to_sym], activity.id
       puts 'done'
     else
       puts "visibility for activity #{activity.id} already good at #{res}"

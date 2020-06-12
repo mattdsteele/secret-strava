@@ -27,9 +27,9 @@ describe 'ride classifier' do
     r = c.classify(act('indoor-short'))
     expect(r).to eq 'private'
   end
-  it 'defaults to followers-only' do
+  it 'defaults to followers_only' do
     c = SecretStrava::RideClassifier.new
     r = c.classify(act('medium-ride'))
-    expect(r).to eq 'followers-only'
+    expect(r).to eq 'followers_only'
   end
 end

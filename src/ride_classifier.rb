@@ -12,7 +12,7 @@ module SecretStrava
         res = i.classify(activity)
         return res if res != nil
       end
-      'followers-only'
+      'followers_only'
     end
   end
 
