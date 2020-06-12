@@ -6,8 +6,8 @@ module SecretStrava
     include SecretStrava::Log
 
     def initialize(config = SecretStrava::EnvConfig.new)
-      @user = config.user
-      @pass = config.password
+      @user = config.strava_user
+      @pass = config.strava_password
     end
     def auth
       log.debug 'Logging in'
