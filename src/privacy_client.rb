@@ -37,9 +37,13 @@ module SecretStrava
       log.info "Setting #{activity_id} to #{visibility}"
       url = "https://www.strava.com/activities/#{activity_id}/edit"
       page = @agent.get(url)
+      puts 'got a page'
+      puts page
       f = page.forms[1]
-      log.debug(page.inspect) if f == null
+      puts 'got a form'
+      puts f
       f.add_field!('activity[visibility]', visibility)
+      puts 'set activity visiblity'
       @agent.submit(f)
       log.debug 'Changed visibility'
     end
