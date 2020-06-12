@@ -11,7 +11,6 @@ module SecretStrava
       @pass = config.strava_password
     end
     def auth
-      log.debug "logging in with #{@user}/#{@pass}"
       agent = Mechanize.new
       page = agent.get('https://strava.com/login')
       f = page.forms.first
@@ -20,8 +19,6 @@ module SecretStrava
       page2 = agent.submit(f)
       @agent = agent
       log.debug 'Logged in'
-      log.debug page2.inspect
-      log.debug 'This was the page'
     end
 
     def make_private(activity_id)
@@ -40,13 +37,8 @@ module SecretStrava
       log.info "Setting #{activity_id} to #{visibility}"
       url = "https://www.strava.com/activities/#{activity_id}/edit"
       page = @agent.get(url)
-      puts 'got a page'
-      puts page.inspect
       f = page.forms[1]
-      puts 'got a form'
-      puts f
       f.add_field!('activity[visibility]', visibility)
-      puts 'set activity visiblity'
       @agent.submit(f)
       log.debug 'Changed visibility'
     end
