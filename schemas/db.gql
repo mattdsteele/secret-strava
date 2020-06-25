@@ -5,6 +5,19 @@ type User {
   expiresAt: Time
 }
 
+type Segment {
+  segmentId: Int!
+  counts: [Count!] @relation
+}
+
+type Count {
+  ts: Time!
+  segment: Segment!
+  effortCount: Int!
+  athleteCount: Int!
+}
+
 type Query {
   userById(athleteId: Int!): User!
+  allSegments: [Segment!]
 }
