@@ -12,8 +12,9 @@ def write_activity(id, name, client)
   IO.write "spec/fixtures/activities/#{name}", data
 end
 
-write_activity 3_441_346_632, 'commute', client
-write_activity 3_500_932_506, 'medium-ride', client
-write_activity 3_436_547_617, 'big-ride', client
-write_activity 938_516_947, 'indoor-short', client
-write_activity 60_041_372, 'shortride', client
+write_activity 938516947, 'custom-title', client
+# write_activity 3_441_346_632, 'commute', client
+# write_activity 3_500_932_506, 'medium-ride', client
+# write_activity 3_436_547_617, 'big-ride', client
+# write_activity 938_516_947, 'indoor-short', client
+# write_activity 60_041_372, 'shortride', client

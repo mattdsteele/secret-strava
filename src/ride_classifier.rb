@@ -6,8 +6,14 @@ module SecretStrava
         LongRideIdentifier.new,
         ShortRideIdentifier.new
       ]
+      @classifiers = [
+        BikeIdentifier.new,
+        CustomNameIdentifier.new
+      ]
     end
-    def classify(activity)
+    def classify(activity, check_classify = true)
+      return nil if check_classify and !@classifiers.all? {|c| c.classify(activity)}
+
       @identifiers.each do |i|
         res = i.classify(activity)
         return res if res != nil
@@ -16,6 +22,17 @@ module SecretStrava
     end
   end
 
+  class BikeIdentifier
+    def classify(activity)
+      activity.type == 'Ride'
+    end
+  end
+  class CustomNameIdentifier
+    def classify(activity)
+      name = activity.name
+      ['Morning Ride','Lunch Ride','Afternoon Ride','Evening Ride','Night Ride'].include? name
+    end
+  end
   class CommuteIdentifier
     def classify(activity)
       'private' if activity.commute

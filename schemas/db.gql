@@ -20,4 +20,5 @@ type Count {
 type Query {
   userById(athleteId: Int!): User!
   allSegments: [Segment!]
+  segmentById(segmentId: Int!): Segment
 }
