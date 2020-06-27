@@ -58,10 +58,10 @@ post '/events' do
 
   puts "#{activity.name}: #{activity.type_emoji}"
 
-  if activity.type == 'Ride'
     res = classifier.classify activity
-
-    if res != activity.visibility
+    if res == nil
+      puts "not acting on #{activity.name}"
+    elsif res != activity.visibility
       puts "updating visibility of event: #{activity} from #{
              activity.visibility
            } to #{res}"
