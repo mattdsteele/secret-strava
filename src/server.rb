@@ -58,25 +58,25 @@ post '/events' do
 
   puts "#{activity.name}: #{activity.type_emoji}"
 
-    res = classifier.classify activity
-    if res == nil
-      puts "not acting on #{activity.name}"
-    elsif res != activity.visibility
-      puts "updating visibility of event: #{activity} from #{
-             activity.visibility
-           } to #{res}"
-      privacy.auth
-      mappings = {
-        'private': :make_private,
-        'followers_only': :make_followers_only,
-        'everyone': :make_public
-      }
-      privacy.send mappings[res.to_sym], activity.id
-      puts 'done'
-    else
-      puts "visibility for activity #{activity.id} already good at #{res}"
-    end
+  res = classifier.classify activity
+  if res == nil
+    puts "not acting on #{activity.name}"
+  elsif res != activity.visibility
+    puts "updating visibility of event: #{activity} from #{
+            activity.visibility
+          } to #{res}"
+    privacy.auth
+    mappings = {
+      'private': :make_private,
+      'followers_only': :make_followers_only,
+      'everyone': :make_public
+    }
+    privacy.send mappings[res.to_sym], activity.id
+    puts 'done'
+  else
+    puts "visibility for activity #{activity.id} already good at #{res}"
   end
+
   content_type :json
   { ok: true }.to_json
 end
