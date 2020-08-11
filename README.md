@@ -19,3 +19,4 @@ Uses Strava's webhooks API: https://developers.strava.com/docs/webhooks/ which i
 Tokens stored in [FaunaDB](https://fauna.com/) via a GraphQL interface
 
 Running on GCP as a Dockerized [Cloud Run](https://cloud.google.com/run) application
+
