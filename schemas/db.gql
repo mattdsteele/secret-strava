@@ -8,6 +8,8 @@ type User {
 type Segment {
   segmentId: Int!
   trail: String
+  sport: String
+  weatherStationId: String
   counts: [Count!] @relation
 }
 
