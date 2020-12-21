@@ -24,4 +24,6 @@ type Query {
   userById(athleteId: Int!): User!
   allSegments: [Segment!]
   segmentById(segmentId: Int!): Segment
+  allUsers: [User!]
+  allCounts: [Count!]
 }
