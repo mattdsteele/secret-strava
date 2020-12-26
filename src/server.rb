@@ -8,7 +8,7 @@ require_relative './privacy_client'
 require 'date'
 
 client = SecretStrava::StravaClient.new
-user = SecretStrava::UserRepo.new
+user = SecretStrava::FirestoreUserRepo.new
 classifier = SecretStrava::RideClassifier.new
 privacy = SecretStrava::PrivacyClient.new
 
