@@ -62,10 +62,11 @@ post '/events' do
   if res == nil
     puts "not acting on #{activity.name}"
   elsif res != activity.visibility
-    puts "updating visibility of event: #{activity} from #{
+    puts "updating visibility of event: #{activity.id} from #{
             activity.visibility
           } to #{res}"
     privacy.auth
+    puts "successfully authenticated"
     mappings = {
       'private': :make_private,
       'followers_only': :make_followers_only,
