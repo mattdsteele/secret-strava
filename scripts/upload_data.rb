@@ -2,7 +2,7 @@ require 'dotenv/load'
 require_relative '../src/user_repo.rb'
 require 'date'
 
-r = SecretStrava::UserRepo.new
+r = SecretStrava::FirestoreUserRepo.new
 now = DateTime.now.new_offset(0).iso8601.sub! '+00:00', 'Z'
 athlete = {
   athleteId: 1234, accessToken: 'bbb', refreshToken: 'lqwerty', expiresAt: now

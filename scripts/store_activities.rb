@@ -1,7 +1,7 @@
 require_relative '../src/user_repo'
 require_relative '../src/strava_client'
 
-r = SecretStrava::UserRepo.new
+r = SecretStrava::FirestoreUserRepo.new
 c = SecretStrava::StravaClient.new
 
 user_data = r.get_or_refresh 1_751_710
