@@ -33,12 +33,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # Setup gcloud CLI
-      - uses: google-github-actions/setup-gcloud@v0
+      # auth to gcloud
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v2'
         with:
-          version: '290.0.1'
-          service_account_key: ${{ secrets.RUN_SA_KEY }}
+          credentials_json: '${{ secrets.RUN_SA_KEY }}'
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v2'
+        with:
           project_id: ${{ secrets.RUN_PROJECT }}
+
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
 
       # Build and push image to Google Container Registry
       - name: Build
