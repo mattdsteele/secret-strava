@@ -30,7 +30,7 @@ module SecretStrava
   class CustomNameIdentifier
     def classify(activity)
       name = activity.name
-      (name =~ /(Morning|Evening|Lunch|Afternoon|Night) \w*? Ride/).eql? 0
+      (name =~ /(Morning|Evening|Lunch|Afternoon|Night) [\w ]*Ride/).eql? 0
     end
   end
   class CommuteIdentifier
